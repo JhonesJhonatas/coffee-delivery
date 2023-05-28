@@ -35,7 +35,7 @@ export function CoffesList() {
 
       <div className="flex flex-wrap gap-y-28 justify-between">
         {listOfCoffes.map(coffe => {
-          return <CoffeeBox caracteristics={coffe.caracteristics} title={coffe.title} description={coffe.description} value={coffe.value} key={coffe.id} />
+          return <CoffeeBox id={coffe.id} caracteristics={coffe.caracteristics} title={coffe.title} description={coffe.description} value={coffe.value} key={coffe.id} />
         })}
       </div>
     </section>

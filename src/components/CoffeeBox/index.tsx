@@ -1,7 +1,6 @@
 import { ShoppingCart } from '@phosphor-icons/react'
 import { v4 as uuid } from 'uuid'
-
-import imageOne from '../../assets/coffes/1.svg'
+import img1 from '../../assets/coffes/1.svg'
 
 interface CoffeeBoxProps {
   id?: number,
@@ -11,16 +10,16 @@ interface CoffeeBoxProps {
   value: number,
 }
 
-export function CoffeeBox({id, caracteristics, title, description, value} :CoffeeBoxProps) {
+export function CoffeeBox({ caracteristics, title, description, value} :CoffeeBoxProps) {
 
   return (
     <div className='bg-gray-200 w-72 p-4 rounded-r-3xl rounded-b-3xl'>
 
-      <img className='-mt-16 mx-auto' src={imageOne} alt="" />
+      <img className='-mt-16 mx-auto' src={img1} alt="" />
 
-      <div className='flex justify-center items-center mt-3 mb-5'>
+      <div className='flex justify-center items-center mt-3 mb-5 gap-3'>
         {caracteristics.map(caracteristic => {
-          return <p key={uuid()} className='bg-orange-200 text-orange-800 font-bold text-xs py-2 px-3 rounded-full'>{caracteristic}</p>
+          return <p key={uuid()} className='bg-orange-200 text-orange-800 font-bold text-xs py-2 px-3 rounded-full uppercase'>{caracteristic}</p>
         })}
       </div>
 
