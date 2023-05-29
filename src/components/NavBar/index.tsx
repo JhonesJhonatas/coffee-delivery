@@ -1,11 +1,14 @@
-import { MapPin, ShoppingCart  } from '@phosphor-icons/react'
+import { NavLink } from 'react-router-dom'
+import { MapPin, ShoppingCart } from '@phosphor-icons/react'
 import coffeLogo from '../../assets/coffee-delivery-logo.svg'
 
-export function NavBar(){
-  return(
+export function NavBar() {
+  return (
     <nav className='flex w-4/6 items-center justify-between my-0 mx-auto py-5'>
 
-      <img src={coffeLogo} alt="coffee-delivery-logo" />
+      <NavLink to="/">
+        <img src={coffeLogo} alt="coffee-delivery-logo" />
+      </NavLink>
 
       <div className='flex gap-3 items-center'>
 
@@ -13,12 +16,13 @@ export function NavBar(){
 
           <MapPin size={20} weight='fill' />
           <p className='font-normal text-sm'>Ceilândia, DF</p>
-          
-        </div>
 
-        <div className='bg-orange-200 p-2 rounded text-orange-700'>
-          <ShoppingCart size={20} weight='fill' />
         </div>
+        <NavLink to="/checkout">
+          <div className='bg-orange-200 p-2 rounded text-orange-700'>
+            <ShoppingCart size={20} weight='fill' />
+          </div>
+        </NavLink>
 
       </div>
     </nav>

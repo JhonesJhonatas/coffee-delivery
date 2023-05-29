@@ -1,17 +1,17 @@
-import { CoffesList } from './components/CoffesList'
-import { Header } from './components/Header'
-import { NavBar } from './components/NavBar'
+import { BrowserRouter } from 'react-router-dom'
+import { Router } from './Router'
 import './global.css'
 
 export function App() {
 
   return (
     <div className='bg-gray-100'>
-        <NavBar />
 
-        <Header />
+      <BrowserRouter>
 
-        <CoffesList />
+        <Router />
+
+      </BrowserRouter>
 
     </div>
   )
