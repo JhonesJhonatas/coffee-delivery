@@ -1,6 +1,7 @@
 import { ReactSVG } from 'react-svg'
 import { ShoppingCart } from '@phosphor-icons/react'
 import { v4 as uuid } from 'uuid'
+import { useState } from 'react'
 
 interface CoffeeBoxProps {
   id?: number,
@@ -13,6 +14,15 @@ interface CoffeeBoxProps {
 
 export function CoffeeBox({ image, caracteristics, title, description, value} :CoffeeBoxProps) {
 
+  const [countCoffee, setCountCoffee] = useState(0)
+
+  function sumCountCoffee(){
+    setCountCoffee(countCoffee + 1)
+  }
+  
+  function subtractCountCoffee(){
+    setCountCoffee(countCoffee - 1)
+  }
   return (
     <div className='bg-gray-200 w-72 p-4 rounded-r-3xl rounded-b-3xl flex flex-col'>
 
@@ -39,11 +49,11 @@ export function CoffeeBox({ image, caracteristics, title, description, value} :C
 
         <div className='flex items-center gap-3'>
           <div className='flex items-center gap-3 bg-gray-300 rounded px-2'>
-            <p className='text-blue-700 text-2xl font-normal cursor-pointer'>-</p>
-            <p className='font-bold'>0</p>
-            <p className='text-blue-700 text-2xl font-normal cursor-pointer'>+</p>
+            <p onClick={subtractCountCoffee} className='text-blue-700 text-2xl font-normal cursor-pointer'>-</p>
+            <p className='font-bold'>{countCoffee}</p>
+            <p onClick={sumCountCoffee} className='text-blue-700 text-2xl font-normal cursor-pointer'>+</p>
           </div>
-          <ShoppingCart className='bg-blue-900 w-9 h-9 p-2 rounded text-gray-100' size={20} weight='fill' />
+          <ShoppingCart className='bg-blue-900 w-9 h-9 p-2 rounded text-gray-100 cursor-pointer' size={20} weight='fill' />
         </div>
       </div>
 

@@ -1,40 +1,29 @@
-import { MapPinLine } from '@phosphor-icons/react'
+import { AdressForm } from "../../components/AdressForm";
+import { PaymentMethodBox } from "../../components/PaymentMethodBox";
+import { ShoppingCartBox } from "../../components/ShoppingCartBox";
 
 export function CheckOut() {
 
     return (
-        <div className='bg-gray-100 grid grid-cols-2 w-4/6 my-10 mx-auto h-screen'>
+        <div className='bg-gray-100 grid grid-cols-2 w-4/6 my-10 mx-auto h-screen gap-10'>
 
             {/* Left */}
             <div>
-                <h1>Complete seu pedido</h1>
 
-                <div className='mt-8 bg-gray-200 rounded-r-3xl rounded-b-3xl p-8'>
-                    <div className='flex items-start gap-2 mb-8'>
-                        <MapPinLine className='text-orange-600' size={25} />
-                        <div>
-                            <p className='font-bold'>Endereço de Entrega</p>
-                            <p>Informe o endereço onde deseja receber seu pedido</p>
-                        </div>
-                    </div>
-                    <form className='flex flex-col gap-y-6'>
-                        <input className='border border-gray-300 bg-gray-200 p-1 rounded text-gray-900' type="text" placeholder='CEP' />
-                        <input className='border border-gray-300 bg-gray-200 p-1 rounded text-gray-900'type="text" placeholder='Rua' />
-                        <div className='flex gap-2'>
-                            <input className='border border-gray-300 bg-gray-200 p-1 rounded text-gray-900' type="text" placeholder='Número' />
-                            <input className='border border-gray-300 bg-gray-200 p-1 rounded text-gray-900 flex-1' type="text" placeholder='Complemento' />
-                        </div>
-                        <div className='flex justify-between gap-2'>
-                            <input className='border border-gray-300 bg-gray-200 p-1 rounded text-gray-900' type="text" placeholder='Bairro' />
-                            <input className='border border-gray-300 bg-gray-200 p-1 rounded text-gray-900' type="text" placeholder='Cidade' />
-                            <input className='border border-gray-300 bg-gray-200 p-1 rounded text-gray-900' type="text" placeholder='UF' />
-                        </div>
-                    </form>
-                </div>
+                <h1 className="font-bold text-lg">Complete seu pedido</h1>
+
+                <AdressForm />
+
+                <PaymentMethodBox />
+
             </div>
 
             {/* Right*/}
             <div>
+
+                <h1 className="font-bold text-lg">Cafés selecionados</h1>
+
+                <ShoppingCartBox />
 
             </div>
 
