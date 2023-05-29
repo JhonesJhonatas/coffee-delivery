@@ -19,6 +19,7 @@ export function NavBar() {
 
         </div>
         <NavLink to="/checkout">
+          <p className='text-gray-50 bg-orange-700 w-7 h-6 p-1 pb-6 absolute rounded-full ml-5 -mt-4 text-sm text-center'>1</p>
           <div className='bg-orange-200 p-2 rounded text-orange-700'>
             <ShoppingCart size={20} weight='fill' />
           </div>
