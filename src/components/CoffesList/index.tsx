@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CoffeeBox } from "../CoffeeBox";
 
 interface ListOfCoffesPattern {
@@ -15,19 +15,21 @@ export function CoffesList() {
 
   const [listOfCoffes, setListOfCoffes] = useState<ListOfCoffesPattern[]>([])
 
-  async function captureCoffesList() {
+  useEffect(() => {
+    async function captureCoffesList(){
+      try {
+        const response = await fetch('/src/db/listOfCoffees.json')
+        const data = await response.json()
+        setListOfCoffes(data)
+        console.log(data)
+      } catch(error) {
+        console.log(error)
+      }
+    }
 
-    let coffesList :ListOfCoffesPattern[]= []
+    captureCoffesList()
+  }, [])
 
-    await fetch('/src/db/listOfCoffes.json')
-      .then(response => response.json())
-      .then(data => coffesList = data)
-      .catch(error => console.log(error))
-
-    return setListOfCoffes(coffesList)
-  }
-
-  captureCoffesList()
 
   return (
     <section className="w-4/6 my-0 mx-auto mt-10">
