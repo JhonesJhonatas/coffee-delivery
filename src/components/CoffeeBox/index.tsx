@@ -1,21 +1,22 @@
+import { ReactSVG } from 'react-svg'
 import { ShoppingCart } from '@phosphor-icons/react'
 import { v4 as uuid } from 'uuid'
-import img1 from '../../assets/coffes/1.svg'
 
 interface CoffeeBoxProps {
   id?: number,
+  image: string,
   caracteristics: string[],
   title: string,
   description: string,
   value: number,
 }
 
-export function CoffeeBox({ caracteristics, title, description, value} :CoffeeBoxProps) {
+export function CoffeeBox({ image, caracteristics, title, description, value} :CoffeeBoxProps) {
 
   return (
-    <div className='bg-gray-200 w-72 p-4 rounded-r-3xl rounded-b-3xl'>
+    <div className='bg-gray-200 w-72 p-4 rounded-r-3xl rounded-b-3xl flex flex-col'>
 
-      <img className='-mt-16 mx-auto' src={img1} alt="" />
+      <ReactSVG className='-mt-16 mx-auto' src={image}/>
 
       <div className='flex justify-center items-center mt-3 mb-5 gap-3'>
         {caracteristics.map(caracteristic => {

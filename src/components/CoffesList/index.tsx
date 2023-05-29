@@ -3,6 +3,7 @@ import { CoffeeBox } from "../CoffeeBox";
 
 interface ListOfCoffesPattern {
   id: number,
+  image: string,
   caracteristics: string[],
   title: string,
   description: string,
@@ -21,7 +22,6 @@ export function CoffesList() {
         const response = await fetch('/src/db/listOfCoffees.json')
         const data = await response.json()
         setListOfCoffes(data)
-        console.log(data)
       } catch(error) {
         console.log(error)
       }
@@ -32,12 +32,12 @@ export function CoffesList() {
 
 
   return (
-    <section className="w-4/6 my-0 mx-auto mt-10">
+    <section className="w-4/6 my-0 mx-auto mt-10 pb-10">
       <h1 className="text-3xl font-bold mb-20">Nossos cafés</h1>
 
-      <div className="flex flex-wrap gap-y-28 justify-between">
+      <div className="flex flex-wrap gap-y-28 gap-x-8">
         {listOfCoffes.map(coffe => {
-          return <CoffeeBox id={coffe.id} caracteristics={coffe.caracteristics} title={coffe.title} description={coffe.description} value={coffe.value} key={coffe.id} />
+          return <CoffeeBox id={coffe.id} image={coffe.image} caracteristics={coffe.caracteristics} title={coffe.title} description={coffe.description} value={coffe.value} key={coffe.id} />
         })}
       </div>
     </section>
