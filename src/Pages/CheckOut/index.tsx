@@ -1,6 +1,5 @@
-import { AdressForm } from "../../components/AdressForm";
-import { PaymentMethodBox } from "../../components/PaymentMethodBox";
-import { ShoppingCartBox } from "../../components/ShoppingCartBox";
+import { ItemShoppingCart } from "../../components/ItemShoppingCart";
+import { MapPinLine, CurrencyDollarSimple, CreditCard, Bank, Money } from '@phosphor-icons/react'
 
 export function CheckOut() {
 
@@ -12,9 +11,54 @@ export function CheckOut() {
 
                 <h1 className="font-bold text-lg">Complete seu pedido</h1>
 
-                <AdressForm />
+                <div className='mt-8 bg-gray-200 rounded-r-3xl rounded-b-3xl p-8'>
+                    <div className='flex items-start gap-2 mb-8'>
+                        <MapPinLine className='text-orange-600' size={25} />
+                        <div>
+                            <p className='font-bold'>Endereço de Entrega</p>
+                            <p>Informe o endereço onde deseja receber seu pedido</p>
+                        </div>
+                    </div>
+                    <form className='flex flex-col gap-y-6 text-sm'>
+                        <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='CEP' />
+                        <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='Rua' />
+                        <div className='flex gap-2'>
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='Número' />
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900 flex-1' type="text" placeholder='Complemento' />
+                        </div>
+                        <div className='flex justify-between gap-2'>
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='Bairro' />
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='Cidade' />
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='UF' />
+                        </div>
+                    </form>
+                </div>
 
-                <PaymentMethodBox />
+                <div className='mt-8 bg-gray-200 rounded-r-3xl rounded-b-3xl p-8'>
+                    <div className='flex items-start gap-2 mb-8'>
+                        <CurrencyDollarSimple className='text-purple-700' size={25} />
+                        <div>
+                            <p className='font-bold'>Pagamento</p>
+                            <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
+                        </div>
+                    </div>
+
+                    <div className='flex gap-4 justify-between'>
+                        <div className='flex items-center gap-2 bg-gray-300 p-4 rounded cursor-pointer'>
+                            <CreditCard className='text-purple-700' size={20} />
+                            <p className='uppercase text-sm'>Cartão de crédito</p>
+                        </div>
+                        <div className='flex items-center gap-2 bg-gray-300 p-4 rounded cursor-pointer'>
+                            <Bank className='text-purple-700' size={20} />
+                            <p className='uppercase text-sm'>cartão de débito</p>
+                        </div>
+                        <div className='flex items-center gap-2 bg-gray-300 p-4 rounded flex-1 cursor-pointer'>
+                            <Money className='text-purple-700' size={20} />
+                            <p className='uppercase text-sm'>dinheiro</p>
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -23,7 +67,31 @@ export function CheckOut() {
 
                 <h1 className="font-bold text-lg">Cafés selecionados</h1>
 
-                <ShoppingCartBox />
+                <div className='mt-8 bg-gray-200 rounded-r-3xl rounded-b-3xl p-8'>
+
+                    <ItemShoppingCart />
+
+                    <ItemShoppingCart />
+
+                    <div className="flex flex-col gap-y-6">
+                        <div className="flex justify-between">
+                            <p>Total de itens</p>
+                            <p>R$ 29,70</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p>Entrega</p>
+                            <p>R$ 3,50</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="font-bold text-lg">Total</p>
+                            <p className="font-bold text-2xl">R$ 33,20</p>
+                        </div>
+
+                        <input className="bg-orange-500 text-gray-50 p-2 rounded w-full font-bold cursor-pointer" type="button" value="Confirmar Pedido" />
+
+                    </div>
+
+                </div>
 
             </div>
 
