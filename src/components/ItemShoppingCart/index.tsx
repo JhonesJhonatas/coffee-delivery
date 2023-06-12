@@ -1,20 +1,26 @@
 import { ReactSVG } from "react-svg";
 import { Trash } from '@phosphor-icons/react'
+interface ItemShoppingCartProps{
+    name: string,
+    amount: number,
+    value: number,
+    image: string
+}
 
-export function ItemShoppingCart() {
+export function ItemShoppingCart({name, amount, value, image} : ItemShoppingCartProps) {
     return (
         <div className="flex justify-between items-center p-4 border-b border-gray-300 pb-8 mb-5">
 
             <div className="flex gap-4 items-center">
 
-                <ReactSVG src='/src/assets/coffees/coffee1.svg' />
+                <ReactSVG src={image} />
 
                 <div className="flex flex-col gap-y-3">
-                    <p className="font-bold">Expresso Tradicional</p>
+                    <p className="font-bold">{name}</p>
                     <div className="flex items-center gap-2">
                         <div className='flex items-center gap-3 bg-gray-300 rounded px-2'>
                             <p className='text-blue-700 text-2xl font-normal cursor-pointer'>-</p>
-                            <p className='font-bold'>0</p>
+                            <p className='font-bold'>{amount}</p>
                             <p className='text-blue-700 text-2xl font-normal cursor-pointer'>+</p>
                         </div>
 
@@ -30,7 +36,7 @@ export function ItemShoppingCart() {
             </div>
 
             <div className="flex gap-1 items-end">
-                <small className="font-bold">R$</small><p className="font-bold text-3xl">9,90</p>
+                <small className="font-bold">R$</small><p className="font-bold text-3xl">{value}</p>
             </div>
 
 

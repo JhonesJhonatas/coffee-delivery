@@ -1,9 +1,15 @@
 import { NavLink } from 'react-router-dom'
 import { MapPin, ShoppingCart } from '@phosphor-icons/react'
 import coffeLogo from '../../assets/coffee-delivery-logo.svg'
+import { useContext } from 'react'
+import { CartContext } from '../../App'
 
 export function NavBar() {
+
+  const { productsOnCart } = useContext(CartContext)
+
   return (
+
     <nav className='flex w-4/6 items-center justify-between my-0 mx-auto py-5'>
 
       <NavLink to="/">
@@ -19,7 +25,7 @@ export function NavBar() {
 
         </div>
         <NavLink to="/checkout">
-          <p className='text-gray-50 bg-orange-700 w-7 h-6 p-1 pb-6 absolute rounded-full ml-5 -mt-4 text-sm text-center'>1</p>
+          <p className='text-gray-50 bg-orange-700 w-7 h-6 p-1 pb-6 absolute rounded-full ml-5 -mt-4 text-sm text-center'>{productsOnCart.length}</p>
           <div className='bg-orange-200 p-2 rounded text-orange-700'>
             <ShoppingCart size={20} weight='fill' />
           </div>

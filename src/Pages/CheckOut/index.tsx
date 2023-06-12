@@ -1,9 +1,14 @@
 import { ItemShoppingCart } from "../../components/ItemShoppingCart";
 import { MapPinLine, CurrencyDollarSimple, CreditCard, Bank, Money } from '@phosphor-icons/react'
+import { useContext } from 'react'
+import { CartContext } from '../../App'
 
 export function CheckOut() {
 
+    const { productsOnCart } = useContext(CartContext)
+
     return (
+
         <div className='bg-gray-100 grid grid-cols-2 w-4/6 my-10 mx-auto h-screen gap-10'>
 
             {/* Left */}
@@ -69,9 +74,9 @@ export function CheckOut() {
 
                 <div className='mt-8 bg-gray-200 rounded-r-3xl rounded-b-3xl p-8'>
 
-                    <ItemShoppingCart />
-
-                    <ItemShoppingCart />
+                    {productsOnCart.map(item => {
+                        return <ItemShoppingCart key={item.id} name={item.title} amount={item.amount} value={item.value} image={item.image}/>
+                    })}
 
                     <div className="flex flex-col gap-y-6">
                         <div className="flex justify-between">

@@ -4,13 +4,11 @@ import { CoffeeBox } from "../CoffeeBox";
 interface ListOfCoffesPattern {
   id: number,
   image: string,
-  caracteristics: string[],
+  caracteristics: [],
   title: string,
   description: string,
   value: number,
 }
-
-
 
 export function CoffesList() {
 
