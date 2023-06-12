@@ -1,8 +1,8 @@
 import { ReactSVG } from "react-svg";
 import { Trash } from '@phosphor-icons/react'
-import { useContext} from 'react'
+import { useContext, useState } from 'react'
 import { CartContext } from '../App'
-interface ItemShoppingCartProps{
+interface ItemShoppingCartProps {
     id: number,
     name: string,
     amount: number,
@@ -10,12 +10,51 @@ interface ItemShoppingCartProps{
     image: string
 }
 
-export function ItemShoppingCart({id, name, amount, value, image} : ItemShoppingCartProps) {
+export function ItemShoppingCart({ id, name, amount, value, image }: ItemShoppingCartProps) {
 
-    const { removeProductOnCart } = useContext(CartContext)
+    const { removeProductOnCart, chageAmountOfProductOnCart } = useContext(CartContext)
+    const [currentAmount, setCurrentAmount] = useState(amount)
 
-    function removeItem(){
+    function removeItem() {
         removeProductOnCart(id)
+    }
+
+    function changeAmountOfItem(event: any) {
+
+        const condition = event.target.dataset.name
+
+        let atualAmount = 0
+
+        let productToChange
+
+        if (condition === 'more') {
+            setCurrentAmount(state => state + 1)
+            atualAmount = currentAmount + 1
+
+            productToChange = {
+                id: id,
+                name: name,
+                amount: amount,
+                value: value,
+                image: image
+            }
+        }
+
+        if (condition === 'less') {
+            setCurrentAmount(state => state - 1)
+            atualAmount = currentAmount - 1
+
+            productToChange = {
+                id: id,
+                name: name,
+                amount: amount,
+                value: value,
+                image: image
+            }
+        }
+
+
+        chageAmountOfProductOnCart(productToChange, atualAmount)
     }
 
     return (
@@ -30,9 +69,9 @@ export function ItemShoppingCart({id, name, amount, value, image} : ItemShopping
                     <p className="font-bold">{name}</p>
                     <div className="flex items-center gap-2">
                         <div className='flex items-center gap-3 bg-gray-300 rounded px-2'>
-                            <p className='text-blue-700 text-2xl font-normal cursor-pointer'>-</p>
-                            <p className='font-bold'>{amount}</p>
-                            <p className='text-blue-700 text-2xl font-normal cursor-pointer'>+</p>
+                            <p onClick={changeAmountOfItem} data-name="less" className='text-blue-700 text-2xl font-normal cursor-pointer'>-</p>
+                            <p className='font-bold'>{currentAmount}</p>
+                            <p onClick={changeAmountOfItem} data-name="more" className='text-blue-700 text-2xl font-normal cursor-pointer'>+</p>
                         </div>
 
                         <div onClick={removeItem} className="flex bg-gray-300 rounded p-1 items-center gap-1 cursor-pointer">
@@ -48,7 +87,7 @@ export function ItemShoppingCart({id, name, amount, value, image} : ItemShopping
 
             <div className="flex gap-1 items-end">
 
-                <small className="font-bold">R$</small><p className="font-bold text-3xl">{(value * amount).toFixed(2)}</p>
+                <small className="font-bold">R$</small><p className="font-bold text-3xl">{(value * currentAmount).toFixed(2)}</p>
 
             </div>
 

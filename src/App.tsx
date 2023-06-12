@@ -16,7 +16,8 @@ interface ProductsSchema {
 interface CartContextSchema {
   productsOnCart: ProductsSchema[],
   addProductOnCart: Function,
-  removeProductOnCart: Function
+  removeProductOnCart: Function,
+  chageAmountOfProductOnCart: Function
 }
 
 export const CartContext = createContext({} as CartContextSchema)
@@ -41,10 +42,43 @@ export function App() {
 
   }
 
+  function chageAmountOfProductOnCart(coffee: ProductsSchema, atualAmount: number) {
+
+    if (atualAmount === 0) {
+
+      const indexOfItemToChange = productsOnCart.findIndex(obj => obj.id === coffee.id)
+
+      const newList = [...productsOnCart]
+
+      newList.splice(indexOfItemToChange,1)
+
+      console.log(newList)
+
+      setProductsOnCart(newList)
+
+    } else {
+      const indexOfItemToChange = productsOnCart.findIndex(obj => obj.id === coffee.id)
+
+      const newList = [...productsOnCart]
+
+      newList[indexOfItemToChange].amount = atualAmount
+
+      setProductsOnCart(newList)
+    }
+
+    
+  }
+
   return (
     <div className='bg-gray-100'>
 
-      <CartContext.Provider value={{ productsOnCart, addProductOnCart, removeProductOnCart}}>
+      <CartContext.Provider value={{
+        productsOnCart,
+        addProductOnCart,
+        removeProductOnCart,
+        chageAmountOfProductOnCart
+      }}
+      >
 
         <BrowserRouter>
 
