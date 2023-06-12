@@ -1,7 +1,7 @@
 import { MapPin, Clock, CurrencyDollarSimple } from '@phosphor-icons/react'
 import { ReactSVG } from 'react-svg'
 
-import deliveryVector from '../../assets/deliveryVector.svg'
+import deliveryVector from '../assets/deliveryVector.svg'
 
 export function Sucess() {
     return (

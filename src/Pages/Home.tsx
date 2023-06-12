@@ -1,5 +1,5 @@
-import { CoffesList } from "../../components/CoffesList";
-import { Header } from "../../components/Header";
+import { CoffesList } from "../components/CoffesList";
+import { Header } from "../components/Header";
 
 export function Home() {
 

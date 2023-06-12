@@ -2,7 +2,7 @@ import { ReactSVG } from 'react-svg'
 import { ShoppingCart } from '@phosphor-icons/react'
 import { v4 as uuid } from 'uuid'
 import { useState, useContext } from 'react'
-import { CartContext } from '../../App'
+import { CartContext } from '../App'
 
 interface CoffeeBoxProps {
   id: number,

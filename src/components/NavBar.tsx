@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import { MapPin, ShoppingCart } from '@phosphor-icons/react'
-import coffeLogo from '../../assets/coffee-delivery-logo.svg'
+import coffeLogo from '../assets/coffee-delivery-logo.svg'
 import { useContext } from 'react'
-import { CartContext } from '../../App'
+import { CartContext } from '../App'
 
 export function NavBar() {
 

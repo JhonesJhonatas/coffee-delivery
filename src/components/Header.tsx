@@ -1,4 +1,4 @@
-import coffeCover from '../../assets/coffe-cover.svg'
+import coffeCover from '../assets/coffe-cover.svg'
 import { ShoppingCart, Package, Timer, Coffee } from '@phosphor-icons/react'
 
 export function Header() {

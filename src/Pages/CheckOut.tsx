@@ -1,7 +1,7 @@
-import { ItemShoppingCart } from "../../components/ItemShoppingCart";
-import { MapPinLine, CurrencyDollarSimple, CreditCard, Bank, Money } from '@phosphor-icons/react'
+import { ItemShoppingCart } from "../components/ItemShoppingCart";
+import { MapPinLine, CurrencyDollarSimple, CreditCard, Bank, Money, SmileySad } from '@phosphor-icons/react'
 import { useContext } from 'react'
-import { CartContext } from '../../App'
+import { CartContext } from '../App'
 
 export function CheckOut() {
 
@@ -9,7 +9,7 @@ export function CheckOut() {
 
     let totalPrice = 0
 
-    const deliveryPrice = 3.5
+    const deliveryPrice = productsOnCart.length === 0 ? 0 : 3.5
 
     productsOnCart.map(product => {
         totalPrice += product.amount * product.value
@@ -82,19 +82,29 @@ export function CheckOut() {
 
                 <div className='mt-8 bg-gray-200 rounded-r-3xl rounded-b-3xl p-8'>
 
-                    {productsOnCart.map(item => {
-                        
-                        return (<ItemShoppingCart
-                            key={item.id}
-                            id={item.id}
-                            name={item.title}
-                            amount={item.amount}
-                            value={item.value}
-                            image={item.image}
-                        />
+                    {productsOnCart.length === 0 ?
 
-                        )
-                    })}
+                        <div className="mb-8 flex gap-6 items-center bg-gray-300 rounded p-2 text-gray-500">
+                            <SmileySad size={150} />
+                            <div>
+                                <h1 className="font-bold text-lg">Parece que você ainda não inseriu itens no seu carrinho.</h1>
+                                <p>Volte para a Home e insira algum item ;D</p>
+                            </div>
+                        </div>
+
+                        : productsOnCart.map(item => {
+
+                            return (<ItemShoppingCart
+                                key={item.id}
+                                id={item.id}
+                                name={item.title}
+                                amount={item.amount}
+                                value={item.value}
+                                image={item.image}
+                            />
+
+                            )
+                        })}
 
                     <div className="flex flex-col gap-y-6">
                         <div className="flex justify-between">

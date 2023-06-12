@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CoffeeBox } from "../CoffeeBox";
+import { CoffeeBox } from "./CoffeeBox";
 
 interface ListOfCoffesPattern {
   id: number,

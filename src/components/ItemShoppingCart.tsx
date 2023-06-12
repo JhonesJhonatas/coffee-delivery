@@ -1,7 +1,7 @@
 import { ReactSVG } from "react-svg";
 import { Trash } from '@phosphor-icons/react'
 import { useContext} from 'react'
-import { CartContext } from '../../App'
+import { CartContext } from '../App'
 interface ItemShoppingCartProps{
     id: number,
     name: string,
