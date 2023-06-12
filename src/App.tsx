@@ -9,7 +9,8 @@ interface ProductsSchema {
   caracteristcs: [],
   title: string,
   description: string,
-  value: number
+  value: number,
+  amount: number
 }
 
 interface CartContextSchema {
