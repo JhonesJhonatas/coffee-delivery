@@ -1,14 +1,25 @@
 import { ReactSVG } from "react-svg";
 import { Trash } from '@phosphor-icons/react'
+import { useContext} from 'react'
+import { CartContext } from '../../App'
 interface ItemShoppingCartProps{
+    id: number,
     name: string,
     amount: number,
     value: number,
     image: string
 }
 
-export function ItemShoppingCart({name, amount, value, image} : ItemShoppingCartProps) {
+export function ItemShoppingCart({id, name, amount, value, image} : ItemShoppingCartProps) {
+
+    const { removeProductOnCart } = useContext(CartContext)
+
+    function removeItem(){
+        removeProductOnCart(id)
+    }
+
     return (
+
         <div className="flex justify-between items-center p-4 border-b border-gray-300 pb-8 mb-5">
 
             <div className="flex gap-4 items-center">
@@ -24,7 +35,7 @@ export function ItemShoppingCart({name, amount, value, image} : ItemShoppingCart
                             <p className='text-blue-700 text-2xl font-normal cursor-pointer'>+</p>
                         </div>
 
-                        <div className="flex bg-gray-300 rounded p-1 items-center gap-1 cursor-pointer">
+                        <div onClick={removeItem} className="flex bg-gray-300 rounded p-1 items-center gap-1 cursor-pointer">
 
                             <Trash size={18} className="text-blue-700" />
                             <p>Remover</p>
@@ -36,7 +47,9 @@ export function ItemShoppingCart({name, amount, value, image} : ItemShoppingCart
             </div>
 
             <div className="flex gap-1 items-end">
-                <small className="font-bold">R$</small><p className="font-bold text-3xl">{value}</p>
+
+                <small className="font-bold">R$</small><p className="font-bold text-3xl">{(value * amount).toFixed(2)}</p>
+
             </div>
 
 

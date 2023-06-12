@@ -56,7 +56,7 @@ export function CoffeeBox({ id, image, caracteristics, title, description, value
 
         <div className='flex items-end gap-1'>
           <small className='font-bold'>R$</small>
-          <p className='font-bold text-3xl'>{value}</p>
+          <p className='font-bold text-3xl'>{value.toFixed(2)}</p>
         </div>
 
         <div className='flex items-center gap-3'>

@@ -7,6 +7,14 @@ export function CheckOut() {
 
     const { productsOnCart } = useContext(CartContext)
 
+    let totalPrice = 0
+
+    const deliveryPrice = 3.5
+
+    productsOnCart.map(product => {
+        totalPrice += product.amount * product.value
+    })
+
     return (
 
         <div className='bg-gray-100 grid grid-cols-2 w-4/6 my-10 mx-auto h-screen gap-10'>
@@ -75,21 +83,31 @@ export function CheckOut() {
                 <div className='mt-8 bg-gray-200 rounded-r-3xl rounded-b-3xl p-8'>
 
                     {productsOnCart.map(item => {
-                        return <ItemShoppingCart key={item.id} name={item.title} amount={item.amount} value={item.value} image={item.image}/>
+                        
+                        return (<ItemShoppingCart
+                            key={item.id}
+                            id={item.id}
+                            name={item.title}
+                            amount={item.amount}
+                            value={item.value}
+                            image={item.image}
+                        />
+
+                        )
                     })}
 
                     <div className="flex flex-col gap-y-6">
                         <div className="flex justify-between">
                             <p>Total de itens</p>
-                            <p>R$ 29,70</p>
+                            <p>R$ {totalPrice.toFixed(2)}</p>
                         </div>
                         <div className="flex justify-between">
                             <p>Entrega</p>
-                            <p>R$ 3,50</p>
+                            <p>R$ {deliveryPrice}</p>
                         </div>
                         <div className="flex justify-between">
                             <p className="font-bold text-lg">Total</p>
-                            <p className="font-bold text-2xl">R$ 33,20</p>
+                            <p className="font-bold text-2xl">R$ {(totalPrice + deliveryPrice).toFixed(2)}</p>
                         </div>
 
                         <input className="bg-orange-500 text-gray-50 p-2 rounded w-full font-bold cursor-pointer" type="button" value="Confirmar Pedido" />

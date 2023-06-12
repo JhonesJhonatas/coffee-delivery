@@ -16,26 +16,35 @@ interface ProductsSchema {
 interface CartContextSchema {
   productsOnCart: ProductsSchema[],
   addProductOnCart: Function,
+  removeProductOnCart: Function
 }
 
 export const CartContext = createContext({} as CartContextSchema)
 
 export function App() {
 
-  const [productsOnCart, setproductsOnCart] = useState<ProductsSchema[]>([])
+  const [productsOnCart, setProductsOnCart] = useState<ProductsSchema[]>([])
 
   function addProductOnCart(product: ProductsSchema) {
 
-    setproductsOnCart([...productsOnCart, product])
+    if (product.amount !== 0) {
+      setProductsOnCart([...productsOnCart, product])
+    }
 
-    console.log(productsOnCart)
+  }
+
+  function removeProductOnCart(id: number) {
+
+    const newListWithoudDeletedOne = productsOnCart.filter(item => item.id !== id)
+
+    setProductsOnCart(newListWithoudDeletedOne)
 
   }
 
   return (
     <div className='bg-gray-100'>
 
-      <CartContext.Provider value={{productsOnCart, addProductOnCart}}>
+      <CartContext.Provider value={{ productsOnCart, addProductOnCart, removeProductOnCart}}>
 
         <BrowserRouter>
 
