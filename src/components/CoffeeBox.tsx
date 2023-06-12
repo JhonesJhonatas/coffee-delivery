@@ -1,7 +1,7 @@
 import { ReactSVG } from 'react-svg'
 import { ShoppingCart } from '@phosphor-icons/react'
 import { v4 as uuid } from 'uuid'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { CartContext } from '../App'
 
 interface CoffeeBoxProps {
@@ -13,13 +13,25 @@ interface CoffeeBoxProps {
   value: number,
 }
 
-export function CoffeeBox({ id, image, caracteristics, title, description, value} :CoffeeBoxProps) {
+export function CoffeeBox({ id, image, caracteristics, title, description, value }: CoffeeBoxProps) {
 
-  const { addProductOnCart } = useContext(CartContext)
+  const { productsOnCart, addProductOnCart } = useContext(CartContext)
 
   const [countCoffee, setCountCoffee] = useState(0)
 
-  function putItemOnCart(){
+  useEffect(() => {
+
+    if(productsOnCart.length !== 0){
+      const productsInfo = productsOnCart.find(product => product.id === id)
+
+      if(productsInfo !== undefined){
+        setCountCoffee(productsInfo.amount)
+      }
+    }
+
+  },[countCoffee])
+
+  function putItemOnCart() {
 
     const itemToAdd = {
       id: id,
@@ -38,7 +50,7 @@ export function CoffeeBox({ id, image, caracteristics, title, description, value
   return (
     <div className='bg-gray-200 w-72 p-4 rounded-r-3xl rounded-b-3xl flex flex-col'>
 
-      <ReactSVG className='-mt-16 mx-auto' src={image}/>
+      <ReactSVG className='-mt-16 mx-auto' src={image} />
 
       <div className='flex justify-center items-center mt-3 mb-5 gap-3'>
         {caracteristics.map(caracteristic => {
@@ -61,9 +73,9 @@ export function CoffeeBox({ id, image, caracteristics, title, description, value
 
         <div className='flex items-center gap-3'>
           <div className='flex items-center gap-3 bg-gray-300 rounded px-2'>
-            <p onClick={() => {countCoffee !== 0 ? setCountCoffee(countCoffee - 1) : undefined }} className='text-blue-700 text-2xl font-normal cursor-pointer'>-</p>
+            <p onClick={() => { countCoffee !== 0 ? setCountCoffee(countCoffee - 1) : undefined }} className='text-blue-700 text-2xl font-normal cursor-pointer'>-</p>
             <p className='font-bold'>{countCoffee}</p>
-            <p onClick={() => {setCountCoffee(countCoffee + 1)}} className='text-blue-700 text-2xl font-normal cursor-pointer'>+</p>
+            <p onClick={() => { setCountCoffee(countCoffee + 1) }} className='text-blue-700 text-2xl font-normal cursor-pointer'>+</p>
           </div>
           <ShoppingCart onClick={putItemOnCart} className='bg-blue-900 w-9 h-9 p-2 rounded text-gray-100 cursor-pointer' size={20} weight='fill' />
         </div>

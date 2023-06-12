@@ -33,17 +33,38 @@ export function CheckOut() {
                         </div>
                     </div>
                     <form className='flex flex-col gap-y-6 text-sm'>
-                        <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='CEP' />
-                        <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='Rua' />
+                        <input
+                            className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
+                            type="text"
+                            placeholder='CEP'
+                        />
+                        <input
+                            className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
+                            type="text"
+                            placeholder='Rua'
+                        />
                         <div className='flex gap-2'>
-                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='Número' />
-                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900 flex-1' type="text" placeholder='Complemento' />
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
+                                type="text"
+                                placeholder='Número' />
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900 flex-1'
+                                type="text"
+                                placeholder='Complemento' />
                         </div>
-                        <div className='flex justify-between gap-2'>
-                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='Bairro' />
-                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='Cidade' />
-                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900' type="text" placeholder='UF' />
+                        <div className='flex justify-evenly gap-2'>
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900 flex-1'
+                                type="text"
+                                placeholder='Bairro'
+                            />
+                            <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
+                                type="text"
+                                placeholder='Cidade' />
                         </div>
+                        <input
+                            className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
+                            type="text"
+                            placeholder='UF'
+                        />
                     </form>
                 </div>
 
@@ -107,17 +128,26 @@ export function CheckOut() {
                         })}
 
                     <div className="flex flex-col gap-y-6">
+
                         <div className="flex justify-between">
+
                             <p>Total de itens</p>
                             <p>R$ {totalPrice.toFixed(2)}</p>
+
                         </div>
+
                         <div className="flex justify-between">
+
                             <p>Entrega</p>
                             <p>R$ {deliveryPrice}</p>
+
                         </div>
+
                         <div className="flex justify-between">
+
                             <p className="font-bold text-lg">Total</p>
                             <p className="font-bold text-2xl">R$ {(totalPrice + deliveryPrice).toFixed(2)}</p>
+
                         </div>
 
                         <input className="bg-orange-500 text-gray-50 p-2 rounded w-full font-bold cursor-pointer" type="button" value="Confirmar Pedido" />

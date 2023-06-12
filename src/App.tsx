@@ -3,6 +3,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
 import './global.css'
 
+import { ToastContainer } from 'react-toastify'
+import { showMessage } from './Notfications'
+
 interface ProductsSchema {
   id: number,
   image: string,
@@ -32,6 +35,8 @@ export function App() {
       setProductsOnCart([...productsOnCart, product])
     }
 
+    showMessage("Produto(s) inseridos no carrinho.")
+
   }
 
   function removeProductOnCart(id: number) {
@@ -39,6 +44,8 @@ export function App() {
     const newListWithoudDeletedOne = productsOnCart.filter(item => item.id !== id)
 
     setProductsOnCart(newListWithoudDeletedOne)
+
+    showMessage("Produto(s) removido do carrinho.")
 
   }
 
@@ -87,6 +94,8 @@ export function App() {
         </BrowserRouter>
 
       </CartContext.Provider>
+
+      <ToastContainer />
 
     </div>
   )
