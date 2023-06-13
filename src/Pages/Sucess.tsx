@@ -1,9 +1,16 @@
 import { MapPin, Clock, CurrencyDollarSimple } from '@phosphor-icons/react'
 import { ReactSVG } from 'react-svg'
+import { AllPurchaseData } from '../App'
+import { useContext } from 'react'
 
 import deliveryVector from '../assets/deliveryVector.svg'
 
 export function Sucess() {
+
+    const { purchaseData } = useContext(AllPurchaseData)
+
+    console.log(purchaseData)
+
     return (
         <div className="mt-16 w-4/6 my-0 mx-auto flex justify-between items-top h-screen">
             <div>
@@ -16,8 +23,8 @@ export function Sucess() {
                     <div className='flex items-center gap-2'>
                         <MapPin className='bg-purple-700 text-gray-50 p-2 h-8 w-8 rounded-full' size={20} weight='fill' />
                         <div>
-                            <p>Entrega em Rua João Daniel Martinelli, 102</p>
-                            <p>Farrapos - Porto Alegre, RS</p>
+                            <p>Entrega em Rua {purchaseData.rua}, {purchaseData.numero}</p>
+                            <p>{purchaseData.cidade} - {purchaseData.uf}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-2'>
@@ -31,7 +38,7 @@ export function Sucess() {
                         <CurrencyDollarSimple className='bg-orange-700 text-gray-50 p-2 h-8 w-8 rounded-full' size={20} />
                         <div>
                             <p>Pagamento na entrega</p>
-                            <p>Cartão de Crédito</p>
+                            <p>{purchaseData.paymentMethod}</p>
                         </div>
                     </div>
                 </div>

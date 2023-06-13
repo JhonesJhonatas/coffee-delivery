@@ -1,18 +1,79 @@
 import { ItemShoppingCart } from "../components/ItemShoppingCart";
 import { MapPinLine, CurrencyDollarSimple, CreditCard, Bank, Money, SmileySad } from '@phosphor-icons/react'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CartContext } from '../App'
+import { AllPurchaseData } from '../App'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+
+type Inputs = {
+    cep: string,
+    rua: string,
+    numero: number,
+    complemento: string,
+    bairro: string,
+    cidade: string,
+    uf: string    
+}
 
 export function CheckOut() {
 
+    const navigate = useNavigate()
+     
+    const { register, handleSubmit } = useForm<Inputs>()
+    const onSubmit: SubmitHandler<Inputs> = data => submitWithAllData(data)
+
     const { productsOnCart } = useContext(CartContext)
+    const { chageStateOfPurchaseData } = useContext(AllPurchaseData)
+
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('')
+
+
+    function selectPaymentMethod(event: any) {
+
+        setSelectedPaymentMethod(event.target.dataset.method)
+
+    }
+
+    function submitWithAllData({cep, rua, numero, complemento, bairro, cidade, uf} : Inputs){
+
+        if(selectedPaymentMethod === ''){
+            
+            console.log('Defina uma forma de pagamento')
+
+        }else if(productsOnCart.length === 0){
+
+            console.log('Você precisa escolher ao menos um produto para efetuar a compra')
+
+        }else{
+            const completeFormsData =  {
+                cep,
+                rua,
+                numero,
+                complemento,
+                bairro,
+                cidade,
+                uf,
+                paymentMethod: selectedPaymentMethod,
+                selectedProducts: productsOnCart
+            }
+    
+            chageStateOfPurchaseData(completeFormsData)
+
+            navigate('/sucess')
+
+        }
+
+    }
 
     let totalPrice = 0
 
     const deliveryPrice = productsOnCart.length === 0 ? 0 : 3.5
 
     productsOnCart.map(product => {
+
         totalPrice += product.amount * product.value
+
     })
 
     return (
@@ -36,60 +97,94 @@ export function CheckOut() {
                         <input
                             className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
                             type="text"
+                            {...register('cep', {required: true})}
                             placeholder='CEP'
                         />
                         <input
                             className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
                             type="text"
+                            {...register('rua')}
                             placeholder='Rua'
                         />
                         <div className='flex gap-2'>
                             <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
-                                type="text"
+                                type="number"
+                                {...register('numero', {required: true})}
                                 placeholder='Número' />
                             <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900 flex-1'
                                 type="text"
+                                {...register('complemento', {required: true})}
                                 placeholder='Complemento' />
                         </div>
                         <div className='flex justify-evenly gap-2'>
                             <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900 flex-1'
                                 type="text"
+                                {...register('bairro', {required: true})}
                                 placeholder='Bairro'
                             />
                             <input className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
                                 type="text"
+                                {...register('cidade', {required: true})}
                                 placeholder='Cidade' />
                         </div>
                         <input
                             className='border border-gray-300 bg-gray-200 p-2 rounded text-gray-900'
                             type="text"
+                            {...register('uf', {required: true})}
                             placeholder='UF'
                         />
                     </form>
                 </div>
 
                 <div className='mt-8 bg-gray-200 rounded-r-3xl rounded-b-3xl p-8'>
+
                     <div className='flex items-start gap-2 mb-8'>
+
                         <CurrencyDollarSimple className='text-purple-700' size={25} />
                         <div>
+
                             <p className='font-bold'>Pagamento</p>
                             <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
+
                         </div>
+
                     </div>
 
-                    <div className='flex gap-4 justify-between'>
-                        <div className='flex items-center gap-2 bg-gray-300 p-4 rounded cursor-pointer'>
-                            <CreditCard className='text-purple-700' size={20} />
-                            <p className='uppercase text-sm'>Cartão de crédito</p>
+                    <div className="flex gap-6">
+
+                        <div
+                            className={`flex border-2 items-center gap-2 bg-slate-300 p-4 rounded cursor-pointer ease-in-out duration-200 ${selectedPaymentMethod === 'credit' ? 'border-2 border-purple-500' : ''}`}
+                            data-method='credit'
+                            onClick={selectPaymentMethod}
+                        >
+
+                            <CreditCard size={30} data-method='credit' />
+                            <p data-method='credit' >Cartão de Crédito</p>
+
                         </div>
-                        <div className='flex items-center gap-2 bg-gray-300 p-4 rounded cursor-pointer'>
-                            <Bank className='text-purple-700' size={20} />
-                            <p className='uppercase text-sm'>cartão de débito</p>
+
+                        <div
+                            className={`flex border-2 items-center gap-2 bg-slate-300 p-4 rounded cursor-pointer ease-in-out duration-200 ${selectedPaymentMethod === 'debit' ? 'border-2 border-purple-500' : ''}`}
+                            data-method='debit'
+                            onClick={selectPaymentMethod}
+                        >
+
+                            <Bank size={30} data-method='debit' />
+                            <p data-method='debit' >Cartão de Débito</p>
+
                         </div>
-                        <div className='flex items-center gap-2 bg-gray-300 p-4 rounded flex-1 cursor-pointer'>
-                            <Money className='text-purple-700' size={20} />
-                            <p className='uppercase text-sm'>dinheiro</p>
+
+                        <div
+                            className={`flex border-2 items-center gap-2 bg-slate-300 p-4 rounded cursor-pointer ease-in-out duration-200 ${selectedPaymentMethod === 'money' ? 'border-2 border-purple-500' : ''}`}
+                            data-method='money'
+                            onClick={selectPaymentMethod}
+                        >
+
+                            <Money size={30} data-method='money' />
+                            <p data-method='money' >Dinheiro</p>
+
                         </div>
+
                     </div>
 
                 </div>
@@ -150,7 +245,12 @@ export function CheckOut() {
 
                         </div>
 
-                        <input className="bg-orange-500 text-gray-50 p-2 rounded w-full font-bold cursor-pointer" type="button" value="Confirmar Pedido" />
+                        <input
+                        onClick={handleSubmit(onSubmit)}
+                            className="bg-orange-500 text-gray-50 p-2 rounded w-full font-bold cursor-pointer ease-in-out duration-150 hover:scale-105"
+                            type="button"
+                            value="Confirmar Pedido"
+                        />
 
                     </div>
 

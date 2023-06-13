@@ -23,19 +23,48 @@ interface CartContextSchema {
   chageAmountOfProductOnCart: Function
 }
 
+interface CoffeeBoxProps {
+  cep: string,
+  rua: string,
+  numero: number,
+  complemento: string,
+  bairro: string,
+  cidade: string,
+  uf: string,
+  paymentMethod: string,
+  selectedProducts: []
+}
+
+interface PurchaseContext {
+  purchaseData: CoffeeBoxProps,
+  chageStateOfPurchaseData: Function
+}
+
 export const CartContext = createContext({} as CartContextSchema)
+export const AllPurchaseData = createContext({} as PurchaseContext)
 
 export function App() {
 
   const [productsOnCart, setProductsOnCart] = useState<ProductsSchema[]>([])
+  const [purchaseData, setPurchaseData] = useState<CoffeeBoxProps>({
+    cep: '',
+    rua: '',
+    numero: 0,
+    complemento: '',
+    bairro: '',
+    cidade: '',
+    uf: '',
+    paymentMethod: '',
+    selectedProducts: []
+  })
 
   function addProductOnCart(product: ProductsSchema) {
 
     if (product.amount !== 0) {
       setProductsOnCart([...productsOnCart, product])
-    }
 
-    showMessage("Produto(s) inseridos no carrinho.")
+      showMessage("Produto(s) inseridos no carrinho.")
+    }
 
   }
 
@@ -57,7 +86,7 @@ export function App() {
 
       const newList = [...productsOnCart]
 
-      newList.splice(indexOfItemToChange,1)
+      newList.splice(indexOfItemToChange, 1)
 
       console.log(newList)
 
@@ -73,7 +102,13 @@ export function App() {
       setProductsOnCart(newList)
     }
 
-    
+
+  }
+
+  function chageStateOfPurchaseData(data: CoffeeBoxProps) {
+
+    setPurchaseData(data)
+
   }
 
   return (
@@ -86,12 +121,15 @@ export function App() {
         chageAmountOfProductOnCart
       }}
       >
+        <AllPurchaseData.Provider value={{ purchaseData, chageStateOfPurchaseData }}>
 
-        <BrowserRouter>
+          <BrowserRouter>
 
-          <Router />
+            <Router />
 
-        </BrowserRouter>
+          </BrowserRouter>
+
+        </AllPurchaseData.Provider>
 
       </CartContext.Provider>
 
