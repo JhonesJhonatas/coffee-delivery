@@ -6,6 +6,9 @@ import { AllPurchaseData } from '../App'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
+import { ToastContainer } from 'react-toastify'
+import { showMessage } from '../Notfications'
+
 type Inputs = {
     cep: string,
     rua: string,
@@ -39,11 +42,11 @@ export function CheckOut() {
 
         if(selectedPaymentMethod === ''){
             
-            console.log('Defina uma forma de pagamento')
+            showMessage('Defina uma forma de pagamento')
 
         }else if(productsOnCart.length === 0){
 
-            console.log('Você precisa escolher ao menos um produto para efetuar a compra')
+            showMessage('Você precisa escolher ao menos um produto para efetuar a compra')
 
         }else{
             const completeFormsData =  {
@@ -257,6 +260,8 @@ export function CheckOut() {
                 </div>
 
             </div>
+
+            <ToastContainer />
 
         </div>
     )

@@ -61,9 +61,20 @@ export function App() {
   function addProductOnCart(product: ProductsSchema) {
 
     if (product.amount !== 0) {
-      setProductsOnCart([...productsOnCart, product])
 
-      showMessage("Produto(s) inseridos no carrinho.")
+      const verifyDuplicateItem = productsOnCart.filter(item => item.id === product.id)
+
+      if (verifyDuplicateItem.length === 0) {
+
+        setProductsOnCart([...productsOnCart, product])
+
+        showMessage("Produto(s) inseridos no carrinho.")
+
+      } else {
+        
+        showMessage("Este item já está no seu carrinho")
+
+      }
     }
 
   }
@@ -88,11 +99,10 @@ export function App() {
 
       newList.splice(indexOfItemToChange, 1)
 
-      console.log(newList)
-
       setProductsOnCart(newList)
 
     } else {
+      
       const indexOfItemToChange = productsOnCart.findIndex(obj => obj.id === coffee.id)
 
       const newList = [...productsOnCart]
@@ -100,6 +110,7 @@ export function App() {
       newList[indexOfItemToChange].amount = atualAmount
 
       setProductsOnCart(newList)
+      
     }
 
 

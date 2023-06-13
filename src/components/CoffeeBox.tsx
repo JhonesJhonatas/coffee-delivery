@@ -25,7 +25,9 @@ export function CoffeeBox({ id, image, caracteristics, title, description, value
       const productsInfo = productsOnCart.find(product => product.id === id)
 
       if(productsInfo !== undefined){
+
         setCountCoffee(productsInfo.amount)
+        
       }
     }
 
