@@ -33,7 +33,7 @@ Aplicação de um site de delivery de café, desenvolvida com 'React, TypeScript
 <br/>
 
 <div class="display: flex, gap: 4rem">
-
+  
   <img src="https://camo.githubusercontent.com/adb5a4ad9ef6595b2588c371f02296da3cb3533f4a7387a19f0818501e75f2ea/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f6e706d2f6e706d2d6f726967696e616c2d776f72646d61726b2e737667" width="50" />
   <img src="https://camo.githubusercontent.com/528e232c728b497080cbf31d2a7e797caa81e402ff81643f79b2c2c395a29f17/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f6a6176617363726970742f6a6176617363726970742d706c61696e2e737667" width="50" />
   <img src="https://camo.githubusercontent.com/c04208976fe84f5bfd2111ba446acf65ff373c962ed80bbf7aa028820a5bbd79/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f747970657363726970742f747970657363726970742d706c61696e2e737667" width="50" />
@@ -50,12 +50,22 @@ Aplicação de um site de delivery de café, desenvolvida com 'React, TypeScript
 
 <ul>
   <li>fetchApi</li>
-  <li>react-router-dom</li>
-  <li>eact-hook-form</li>
-  <li>@phosphor/icons</li>
+  <a href="https://reactrouter.com/en/main">
+    <li>react-router-dom</li>
+  </a>
+  <a href="https://www.react-hook-form.com/">
+    <li>react-hook-form</li>
+  </a>
+  <a href="https://phosphoricons.com/">
+    <li>@phosphor/icons</li>
+  </a>
   <li>contextApi</li>
-  <li>react-toastify</li>
-  <li>Tailwind</li>
+  <a href="https://fkhadra.github.io/react-toastify/introduction">
+    <li>react-toastify</li>
+  </a>
+  <a href="https://tailwindcss.com/">
+    <li>Tailwind</li>
+  </a>
 </ul>
                                                                                                   
 <br/>
@@ -67,8 +77,8 @@ Aplicação de um site de delivery de café, desenvolvida com 'React, TypeScript
 Após realizar o clone do projeto na sua máquina, basta realizar os seguintes comandos:
 
 npm install (vai instalar todas as dependências da aplicação na sua máquina)
-npm run dev (Irá inciar um servidor logal e fornecerá o caminho para visualizar a aplicação)
+npm run dev (Irá inciar um servidor local e fornecerá o caminho para visualizar a aplicação)
 
 <br/>
                                                                                                   
-# ⭐ Origado por chegar até aqui! ;D ⭐
+# ⭐ Obrigado por chegar até aqui! ;D ⭐
