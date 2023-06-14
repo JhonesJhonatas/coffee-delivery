@@ -1,4 +1,4 @@
-# Coffe Delivery - ☕
+# ☕ Coffe Delivery ☕
 Desafio proposto pela trilha Ignite da RocketSeat
 
 # Demonstração da Aplicação
