@@ -48,11 +48,27 @@ Aplicação de um site de delivery de café, desenvolvida com 'React, TypeScript
 
 <br/>
 
-• fetchApi
-• react-router-dom
-• react-hook-form
-• @phosphor/icons
-• contextApi
-• react-toastify
-• Tailwind
+<ul>
+  <li>fetchApi</li>
+  <li>react-router-dom</li>
+  <li>eact-hook-form</li>
+  <li>@phosphor/icons</li>
+  <li>contextApi</li>
+  <li>react-toastify</li>
+  <li>Tailwind</li>
+</ul>
+                                                                                                  
+<br/>
 
+# 🤔 Como inicializar o projeto? 🤔
+
+<br/>
+                                                                                                  
+Após realizar o clone do projeto na sua máquina, basta realizar os seguintes comandos:
+
+npm install (vai instalar todas as dependências da aplicação na sua máquina)
+npm run dev (Irá inciar um servidor logal e fornecerá o caminho para visualizar a aplicação)
+
+<br/>
+                                                                                                  
+# ⭐ Origado por chegar até aqui! ;D ⭐
